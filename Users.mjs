@@ -4,7 +4,7 @@
 *  @example const instance = new Object()
 **/
 
-class Users{
+class users{
 
     #name;
     #surname;
