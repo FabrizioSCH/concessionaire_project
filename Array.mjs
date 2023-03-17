@@ -1,144 +1,69 @@
-export class Automoviles {
+/*
+Clase Brand
+
+* Cabe aclarar que, para poder interactuar con esta clase, es necesario acceder al archivo index.html, correr un live server sobre él y acto siguiente acceder al archivo interact.mjs el cual contiene el espacio para poder interactuar con la clase
+
+* index.html > Aqui podemos ver la consola que estará ejecutando el archivo interact.mjs
+* interact.mjs > Éste programa cumple la funcion de "panel de interacción" en el cual nosotros podremos especificar lo que queremos hacer 
+* brand.mjs > Esta clase está creada para almancear los automoviles y poder visualizar, añadir marca, añadir automovil a una marca, filtrar caracteristicas de un automovil y obtener un listado de todos los automoviles disponibles
+*/
+
+
+export class Brand {
   
     constructor() {
-      this.automoviles = [
-        {
-       brand: 'peugeot',
-       name: '5008',
-       type: 'nafta',
-       transmission: 'auto',
-       engine: 2,
-       bodyType: 'monovolumen',
-       color: 'gris oscuro',
-       year: 2023,
-       prize: 55000,
-   }, {
-       brand: 'peugeot',
-       name: '308',
-       type: 'nafta',
-       transmission: 'manual',
-       engine: 1.6,
-       bodyType: 'hatchback',
-       color: 'gris oscuro',
-       year: 2014,
-       prize: 44000
-   }, {
-       brand: 'peugeot',
-       name: '206',
-       type: 'nafta',
-       transmission: 'manual',
-       engine: 1.4,
-       bodyType: 'hatchback',
-       color: 'rojo',
-       year: 2009,
-       prize: 20000
-   }, {
-       brand: 'peugeot',
-       name: '408',
-       type: 'diesel',
-       transmission: 'manual',
-       engine: 1.6,
-       bodyType: 'sedan',
-       color: 'blanco',
-       year: 2014,
-       prize: 40000
-   }, {
-       brand: 'peugeot',
-       name: 'Partner',
-       type: 'nafta',
-       transmission: 'manual',
-       engine: 1.6,
-       bodyType: 'furgon',
-       color: 'blanco',
-       year: 2019,
-       prize: 35000
-   }, {
-       brand: 'chevrolet',
-       name: 'tracker',
-       type: 'nafta',
-       transmission: 'auto',
-       engine: 1.2,
-       bodyType: 'suv',
-       color: 'gris',
-       year: 2023,
-       prize: 47000
-   }, {
-       brand: 'chevrolet',
-       name: 'onix',
-       type: 'nafta',
-       transmission: 'manual',
-       engine: 1.2,
-       bodyType: 'hatchback',
-       color: 'gris',
-       year: 2023,
-       prize: 39000
-   }, {
-       brand: 'chevrolet',
-       name: 'cruze',
-       type: 'nafta',
-       transmission: 'manual',
-       engine: 1.4,
-       bodyType: 'hatchback',
-       color: 'gris',
-       year: 2017,
-       prize: 32000
-   }, {
-       brand: 'chevrolet',
-       name: 's10',
-       type: 'diesel',
-       transmission: 'auto',
-       engine: 2.8,
-       bodyType: 'pickup',
-       color: 'azul',
-       year: 2023,
-       prize: 42000
-   }, {
-       brand: 'chevrolet',
-       name: 'corsa',
-       type: 'nafta',
-       transmission: 'manual',
-       engine: 1.6,
-       bodyType: 'furgon',
-       color: 'rojo',
-       year: 2009,
-       prize: 19000
-   }
-  ];
+
+      this.peugeot = [
+        { model: "5008", year: 2023, type: "nafta", color: "gris oscuro", transmission: "auto", price: 55000 },
+        { model: "308", year: 2014, type: "nafta", color: "gris oscuro", transmission: "manual", price: 44000 },
+        { model: "206", year: 2009, type: "nafta", color: "rojo", transmission: "manual", price: 20000 },
+        { model: "408", year: 2014, type: "diesel", color: "blanco", transmission: "manual", price: 40000 }
+      ];
+        
+      this.chevrolet = [
+        { model: "tracker", year: 2023, type: "nafta", color: "gris", transmission: "auto", price: 47000 },
+        { model: "onix", year: 2023, type: "nafta", color: "gris", transmission: "manual", price: 39000 },
+        { model: "s10", year: 2023, type: "diesel", color: "azul", transmission: "auto", price: 42000 },
+        { model: "corsa", year: 2009, type: "nafta", color: "rojo", transmission: "manual", price: 19000 }
+      ];
     }
   
-    agregarMarca(brand, name, type, transmission, engine, bodyType, color, year, prize) {
-      const nuevaMarca = {
-        brand,
-        name,
-        type,
-        transmission,
-        engine,
-        bodyType,
-        color,
-        year,
-        prize,
-      };
-      this.automoviles.push(nuevaMarca);
-    }
 
-    filtro(marca, combustible) {
-        return this.automoviles.filter(auto => auto.brand === marca && auto.type === combustible);
-    }
+    addPeugeot(model, year, type, color, transmission, price) {
+      const newCar = { model, year, type, color, transmission, price };
+      this.peugeot.push(newCar); 
+    } //ok
 
-    agregarAuto(brand, name, type, transmission, engine, bodyType, color, year, prize) {
-        const nuevoAuto = {
-            brand,
-            name,
-            type,
-            transmission,
-            engine,
-            bodyType,
-            color,
-            year,
-            prize,
-        };
-        this.automoviles.push(nuevoAuto);
-    }
 
+    addChevrolet(model, year, type, color, transmission, price) {
+        const newCar = { model, year, type, color, transmission, price };
+        this.chevrolet.push(newCar);
+      } //ok
+
+
+    addBrand(brandName) {
+        this[brandName.toLowerCase()] = [];
+    } //ok
+
+
+    filterByProperty(property, value) {
+        let result = [];
+            for(let car of this.peugeot) {
+                if(car[property] === value) {
+          result.push(car);
+        }
+      }
+            for(let car of this.chevrolet) {
+                if(car[property] === value) {
+          result.push(car);
+        }
+      }
+      return result;
+    } //ok
+
+    listInventory() {
+      return [...this.peugeot, ...this.chevrolet];
+    }
+   
   }
   
